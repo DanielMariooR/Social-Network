@@ -3,15 +3,19 @@ using System.Collections.Generic;
 
 public class Vertex{
     public string key;
-    public LinkedList<string> neighbours;
+    public List<string> neighbours;
 
     public Vertex(string key){
         this.key = key;
-        neighbours = new LinkedList<string>();
+        neighbours = new List<string>();
     }
 
     public void addNeighbours(string Nkey){
-        neighbours.AddLast(Nkey);
+        neighbours.Add(Nkey);
+    }
+
+    public List<string> getNeighbours(){
+        return neighbours;
     }
 
     public void printVertex(){
@@ -24,4 +28,5 @@ public class Vertex{
             Console.Write("-->");
         }
     }
+
 }

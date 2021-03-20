@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 
 public class Graph {
-    List<Vertex> adj;
+    public List<Vertex> adj;
+    public int size;
 
-    public Graph(){
+    public Graph(int size){
        adj = new List<Vertex> (); 
+       this.size = size;
     }
 
     public void addVertex(Vertex V){
@@ -32,6 +34,31 @@ public class Graph {
         }
     }
 
+    public int getindex(string vertex1){
+        int idx = -1;
+        for(int i=0; i<adj.Count; i++){
+            if(adj[i].key == vertex1){
+                idx = i;
+            }
+        }
+        return idx;
+    }
+
+    public Vertex getVertex(string vertex1){
+        // Assume vertex1 is always going to be in graph
+        
+        // Placeholder to prevent compiler error, won't effect program execution
+        Vertex Vnull = new Vertex("null"); 
+
+        foreach(Vertex V in adj){
+            if(V.key == vertex1){
+                return V;
+            }
+        }
+
+        return Vnull;
+    }
+
     public bool isVertex(string vertex1){
         bool found = false;
         foreach(Vertex V in adj){
@@ -55,12 +82,4 @@ public class Graph {
         }
     }
 
-    static void Main(string[] args){
-        Vertex A = new Vertex("A");
-        A.addNeighbours("B");
-        A.addNeighbours("C");
-        Graph G = new Graph();
-        G.addVertex(A);
-        G.printGraph();
-    }
 }
