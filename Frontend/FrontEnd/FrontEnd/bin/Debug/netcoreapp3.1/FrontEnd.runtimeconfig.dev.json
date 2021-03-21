@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\deepj\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\deepj\\.nuget\\packages"
+    ]
+  }
+}
