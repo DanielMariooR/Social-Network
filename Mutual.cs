@@ -57,15 +57,11 @@ namespace Tubes2
             }
             return found;
         }
-        
+     
         public void mutualSearch(string akun)
         {
             Vertex akun_ = graph.getVertex(akun);
             List<string> akunNeighbour = akun_.getNeighbours(); // BCD
-            for (int l = 0; l < akunNeighbour.Count; l++)
-            {
-                Console.WriteLine("Neighbour A : " + akunNeighbour[l]);
-            }
             List<List<string>> allNeighbour = new List<List<string>>();
 
             List<string> secondDegree = new List<string>(); // E F G
@@ -73,17 +69,10 @@ namespace Tubes2
             {
                 if (graph.adj[i] != akun_ && !isElmt(akunNeighbour, graph.adj[i].key))// != A atau BCD
                 {
-                    List<string> neighbour = graph.adj[i].getNeighbours();// Neig 
-                    for (int l = 0; l < neighbour.Count; l++)
-                    {
-                        Console.WriteLine("Neighbour " + graph.adj[i].key + " : " + neighbour[l]);
-                    }
-
+                    List<string> neighbour = graph.adj[i].getNeighbours();// Neighbour selain A
                     List<string> newNeighbour = new List<string>();
                     for (int j = 0; j < neighbour.Count; j++) // E BFH
                     {
-                        
-
                         if (isElmt(akunNeighbour, neighbour[j]))
                         {
                             string a = graph.adj[i].key; //E
@@ -92,37 +81,49 @@ namespace Tubes2
                                 secondDegree.Add(a);
                             }
                             newNeighbour.Add(neighbour[j]);
-
                         }
-                        
                     }
                     allNeighbour.Add(newNeighbour);
                 }
             }
-            //allNeighbour.RemoveAt(allNeighbour.Count - 1);
-            foreach(List<string> a in allNeighbour)
+            //Sorting berdasarkan mutual friend terbanyak
+            List<string> allNeighbourTemp = new List<string>();
+            string secondDegreeTemp;
+            for (int y = 0; y < allNeighbour.Count - 2; y++)
             {
-                foreach(string b in a)
+                for (int x = 0; x < allNeighbour.Count - 2; x++)
                 {
-                    Console.WriteLine(b);
+                    if (allNeighbour[x].Count <= allNeighbour[x + 1].Count)
+                    {
+                        allNeighbourTemp = allNeighbour[x + 1];
+                        allNeighbour[x + 1] = allNeighbour[x];
+                        allNeighbour[x] = allNeighbourTemp;
+
+                        secondDegreeTemp = secondDegree[x + 1];
+                        secondDegree[x + 1] = secondDegree[x];
+                        secondDegree[x] = secondDegreeTemp;
+                    }
                 }
-                Console.WriteLine();
             }
-            Console.Write(allNeighbour.Count);
-            Console.Write(" "+secondDegree.Count);
+            Console.WriteLine("Daftar rekomendasi teman untuk akun " + akun);
             for (int i = 0; i < secondDegree.Count; i++)
             {
                 Console.Write("Nama Akun: " + secondDegree[i]);
                 Console.WriteLine();
-
+                if (allNeighbour[i].Count == 1)
+                {
+                    Console.WriteLine("1 mutual friend:");
+                }
+                else
+                {
+                    Console.WriteLine(allNeighbour[i].Count + " mutual friends:");
+                }
                 for (int j = 0; j < allNeighbour[i].Count; j++)
                 {
                     Console.WriteLine(allNeighbour[i][j]);
                     continue;
-                    
                 }
             }
         }
-
     }
 }
