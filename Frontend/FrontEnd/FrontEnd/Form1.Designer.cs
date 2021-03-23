@@ -39,9 +39,9 @@ namespace FrontEnd
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.explore = new System.Windows.Forms.Button();
+            this.DFS = new System.Windows.Forms.CheckBox();
+            this.BFS = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -159,37 +159,39 @@ namespace FrontEnd
             this.label6.TabIndex = 11;
             this.label6.Text = "Explore Friends";
             // 
-            // button2
+            // explore
             // 
-            this.button2.Location = new System.Drawing.Point(277, 554);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(125, 35);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Explore Friends!";
-            this.button2.UseVisualStyleBackColor = true;
+            this.explore.Location = new System.Drawing.Point(277, 554);
+            this.explore.Name = "explore";
+            this.explore.Size = new System.Drawing.Size(125, 35);
+            this.explore.TabIndex = 12;
+            this.explore.Text = "Explore Friends!";
+            this.explore.UseVisualStyleBackColor = true;
+            this.explore.Click += new System.EventHandler(this.explore_Click);
             // 
-            // checkBox1
+            // DFS
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBox1.Location = new System.Drawing.Point(377, 474);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(57, 25);
-            this.checkBox1.TabIndex = 13;
-            this.checkBox1.Text = "DFS";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.DFS.AutoSize = true;
+            this.DFS.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.DFS.Location = new System.Drawing.Point(377, 474);
+            this.DFS.Name = "DFS";
+            this.DFS.Size = new System.Drawing.Size(57, 25);
+            this.DFS.TabIndex = 13;
+            this.DFS.Text = "DFS";
+            this.DFS.UseVisualStyleBackColor = true;
+            this.DFS.CheckedChanged += new System.EventHandler(this.DFS_CheckedChanged);
             // 
-            // checkBox2
+            // BFS
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.checkBox2.Location = new System.Drawing.Point(491, 474);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(55, 25);
-            this.checkBox2.TabIndex = 14;
-            this.checkBox2.Text = "BFS";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.BFS.AutoSize = true;
+            this.BFS.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BFS.Location = new System.Drawing.Point(491, 474);
+            this.BFS.Name = "BFS";
+            this.BFS.Size = new System.Drawing.Size(55, 25);
+            this.BFS.TabIndex = 14;
+            this.BFS.Text = "BFS";
+            this.BFS.UseVisualStyleBackColor = true;
+            this.BFS.CheckedChanged += new System.EventHandler(this.BFS_CheckedChanged);
             // 
             // label5
             // 
@@ -233,9 +235,9 @@ namespace FrontEnd
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.BFS);
+            this.Controls.Add(this.DFS);
+            this.Controls.Add(this.explore);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -267,9 +269,9 @@ namespace FrontEnd
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Button explore;
+        private System.Windows.Forms.CheckBox DFS;
+        private System.Windows.Forms.CheckBox BFS;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel2;

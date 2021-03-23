@@ -147,10 +147,25 @@ namespace FrontEnd
 
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void DFS_CheckedChanged(object sender, EventArgs e)
         {
-
+            BFS.Checked = !DFS.Checked;
         }
 
+        private void BFS_CheckedChanged(object sender, EventArgs e)
+        {
+            DFS.Checked = !BFS.Checked;
+        }
+
+        private void explore_Click(object sender, EventArgs e)
+        {
+            if (DFS.Checked)
+            {
+                MessageBox.Show("This is DFS");
+            } else if (BFS.Checked)
+            {
+                MessageBox.Show("This is BFS");
+            }
+        }
     }
 }
