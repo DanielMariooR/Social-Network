@@ -110,7 +110,7 @@ namespace Tubes2_Social
             }
         }
 
-        public void pathBFS(string vertex1, string vertex2)
+        public string pathBFS(string vertex1, string vertex2)
         {
             bool[] isVisited = new bool[network.size];
             for (int i = 0; i < network.size; i++)
@@ -120,10 +120,12 @@ namespace Tubes2_Social
             string[] pred = new string[network.size];
             if (BFS(vertex1, vertex2, isVisited, pred) == false)
             {
-                Console.WriteLine("make a connection");
+                return ("Make a connection");
+                    
             }
             else
             {
+                string solution = "";
                 List<string> path = new List<string>();
                 int idxpred = network.getindex(vertex2);
                 path.Add(vertex2);
@@ -134,9 +136,24 @@ namespace Tubes2_Social
                     idxpred = network.getindex(currV);
                 }
                 path.Reverse();
-                Console.WriteLine("{0}", string.Join("->", path));
-                int degree = path.Count() - 2;
-                Console.WriteLine("Degree = " + degree);
+                int i = 0;
+                foreach(string p in path)
+                {
+                    i++;
+                    if (i != path.Count)
+                    {
+                        solution += (p + "->");
+                    }
+                    else
+                    {
+                        solution += (p);
+                    }
+                    
+                }
+                
+                solution += "\n";
+                solution += ((path.Count - 2) + " Degree");
+                return solution;
             }
         }
     }
