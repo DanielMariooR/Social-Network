@@ -128,6 +128,8 @@ namespace FrontEnd
                 }
             }
 
+            comboBox3.Items.Add("J");
+
             graphLayout = new Microsoft.Msagl.Drawing.Graph();
 
             foreach (Pair P in edges)
@@ -167,12 +169,20 @@ namespace FrontEnd
             {
                 socialNetwork.network.addEdge(P.vertex1, P.vertex2);
             }
-
-
+        
             if (DFS.Checked)
             {
-               
-                MessageBox.Show("This is DFS");
+                List<string> stack = new List<string>();
+                bool found = false;
+
+                socialNetwork.exploreFriends(ref stack, this.vertex1, this.vertex2, ref found);
+                if (found)
+                {
+                    MessageBox.Show("Found");
+                } else
+                {
+                    MessageBox.Show("Nama akun: " + this.vertex1 + " "+ this.vertex2+ "\n" + "Tidak ada jalur koneksi yang tersedia\nAnda harus memulai koneksi baru itu sendiri.");
+                }
             } else if (BFS.Checked)
             {
                 //displayFriendRec.Text = graph.mutualSearch(string akun);
