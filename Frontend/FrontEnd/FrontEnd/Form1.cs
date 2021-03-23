@@ -191,7 +191,7 @@ namespace FrontEnd
                 }
             } else if (BFS.Checked)
             {
-                //displayFriendRec.Text = graph.mutualSearch(string akun);
+                MessageBox.Show(socialNetwork.pathBFS(this.vertex1,this.vertex2));
                 MessageBox.Show("This is BFS");
             }
 
