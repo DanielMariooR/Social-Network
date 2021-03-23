@@ -128,8 +128,6 @@ namespace FrontEnd
                 }
             }
 
-            comboBox3.Items.Add("J");
-
             graphLayout = new Microsoft.Msagl.Drawing.Graph();
 
             foreach (Pair P in edges)
@@ -178,12 +176,12 @@ namespace FrontEnd
                 socialNetwork.exploreFriends(ref stack, this.vertex1, this.vertex2, ref found);
                 if (found)
                 {
+                    ClearEdgeColor();
                     for(int i=0; i<stack.Count-1; i++)
                     {
                         string v1 = stack[i];
                         string v2 = stack[i + 1];
                         colorEdge(v1, v2);
-
                     }
 
                     gViewer1.Graph = graphLayout;
@@ -216,6 +214,15 @@ namespace FrontEnd
             if(idx != -1)
             {
                 graphLayout.Edges.ElementAt(idx).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+            }
+        }
+
+        private void ClearEdgeColor()
+        {
+            Microsoft.Msagl.Drawing.Edge[] edges = graphLayout.Edges.ToArray();
+            for(int i=0; i<edges.Length; i++)
+            {
+                graphLayout.Edges.ElementAt(i).Attr.Color = Microsoft.Msagl.Drawing.Color.Black;
             }
         }
     }
