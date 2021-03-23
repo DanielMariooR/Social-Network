@@ -12,11 +12,6 @@ using Tubes2_Mutual;
 
 namespace FrontEnd
 {
-    public class comboBox
-    {
-        public int ID { get; set; }
-        public string Text { get; set; }
-    }
     public partial class Form1 : Form
     {
         public List<string> nodes;

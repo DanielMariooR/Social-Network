@@ -1,9 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\Haikal\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Haikal\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      "C:\\Users\\deepj\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\deepj\\.nuget\\packages"
     ]
   }
 }
