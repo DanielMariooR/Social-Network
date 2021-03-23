@@ -8,13 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Tubes2_Mutual;
 
 namespace FrontEnd
 {
+    public class comboBox
+    {
+        public int ID { get; set; }
+        public string Text { get; set; }
+    }
     public partial class Form1 : Form
     {
-
-        Microsoft.Msagl.Drawing.Graph graphLayout;
         public List<string> nodes;
         public List<Pair> edges;
         public string vertex1;
@@ -118,6 +122,7 @@ namespace FrontEnd
                 }
             }
 
+            MessageBox.Show(edges[0].vertex1);
             if (nodes.Count != 0)
             {
                 foreach (string s in nodes)
@@ -127,14 +132,19 @@ namespace FrontEnd
                 }
             }
 
-            graphLayout = new Microsoft.Msagl.Drawing.Graph("graph");
+            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            Microsoft.Msagl.Drawing.Graph graphLayout = new Microsoft.Msagl.Drawing.Graph();
 
             foreach (Pair P in edges)
             {
-                graphLayout.AddEdge(P.vertex1, P.vertex2).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                graphLayout.AddEdge(P.vertex1, P.vertex2);
             }
 
-            gViewer2.Graph = graphLayout;
+            viewer.Graph = graphLayout;
+            this.SuspendLayout();
+            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            panel1.Controls.Add(viewer);
+            this.ResumeLayout();
 
         }
 
@@ -155,20 +165,23 @@ namespace FrontEnd
 
         private void explore_Click(object sender, EventArgs e)
         {
+            Mutual graphMutual = new Mutual(8);
+            foreach(Pair P in edges)
+            {
+                graphMutual.graph.addEdge(P.vertex1, P.vertex2);
+            }
+
+            MessageBox.Show(graphMutual.graph.getVertex("A").key);
 
             if (DFS.Checked)
             {
+                displayFriendRec.Text = graphMutual.mutualSearch(this.vertex1);
                 MessageBox.Show("This is DFS");
             } else if (BFS.Checked)
             {
+                //displayFriendRec.Text = graph.mutualSearch(string akun);
                 MessageBox.Show("This is BFS");
             }
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
