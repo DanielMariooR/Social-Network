@@ -133,7 +133,6 @@ namespace FrontEnd
             {
                 graphLayout.AddEdge(P.vertex1, P.vertex2).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
             }
-            graphLayout.RemoveEdge("A", "B");
 
             gViewer2.Graph = graphLayout;
 
