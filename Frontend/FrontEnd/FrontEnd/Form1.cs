@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Tubes2_Mutual;
+using Tubes2_Social;
 
 namespace FrontEnd
 {
     public partial class Form1 : Form
     {
+        Microsoft.Msagl.Drawing.Graph graphLayout;
         public List<string> nodes;
         public List<Pair> edges;
         public string vertex1;
@@ -117,7 +119,6 @@ namespace FrontEnd
                 }
             }
 
-            MessageBox.Show(edges[0].vertex1);
             if (nodes.Count != 0)
             {
                 foreach (string s in nodes)
@@ -127,19 +128,14 @@ namespace FrontEnd
                 }
             }
 
-            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
-            Microsoft.Msagl.Drawing.Graph graphLayout = new Microsoft.Msagl.Drawing.Graph();
+            graphLayout = new Microsoft.Msagl.Drawing.Graph();
 
             foreach (Pair P in edges)
             {
                 graphLayout.AddEdge(P.vertex1, P.vertex2);
             }
 
-            viewer.Graph = graphLayout;
-            this.SuspendLayout();
-            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            panel1.Controls.Add(viewer);
-            this.ResumeLayout();
+            gViewer1.Graph = graphLayout;
 
         }
 
@@ -166,17 +162,24 @@ namespace FrontEnd
                 graphMutual.graph.addEdge(P.vertex1, P.vertex2);
             }
 
-            MessageBox.Show(graphMutual.graph.getVertex("A").key);
+            Social socialNetwork = new Social(nodes.Count);
+            foreach(Pair P in edges)
+            {
+                socialNetwork.network.addEdge(P.vertex1, P.vertex2);
+            }
+
 
             if (DFS.Checked)
             {
-                displayFriendRec.Text = graphMutual.mutualSearch(this.vertex1);
+               
                 MessageBox.Show("This is DFS");
             } else if (BFS.Checked)
             {
                 //displayFriendRec.Text = graph.mutualSearch(string akun);
                 MessageBox.Show("This is BFS");
             }
+
+            displayFriendRec.Text = graphMutual.mutualSearch(this.vertex1);
         }
     }
 }
