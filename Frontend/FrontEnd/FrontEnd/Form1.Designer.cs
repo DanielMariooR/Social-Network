@@ -258,7 +258,7 @@ namespace FrontEnd
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.ClientSize = new System.Drawing.Size(669, 791);
+            this.ClientSize = new System.Drawing.Size(669, 808);
             this.Controls.Add(this.displayFriendRec);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label5);

@@ -191,8 +191,24 @@ namespace FrontEnd
                 }
             } else if (BFS.Checked)
             {
-                MessageBox.Show(socialNetwork.pathBFS(this.vertex1,this.vertex2));
-                MessageBox.Show("This is BFS");
+                List<string> path = new List<string>();
+                bool found = false;
+                MessageBox.Show(socialNetwork.pathBFS(ref path, this.vertex1,this.vertex2, ref found));
+                if (found)
+                {
+                    ClearEdgeColor();
+                    for (int i = 0; i < path.Count - 1; i++)
+                    {
+                        string v1 = path[i];
+                        string v2 = path[i + 1];
+                        colorEdge(v1, v2);
+                    }
+
+                    gViewer1.Graph = graphLayout;
+                } else
+                {
+
+                }
             }
 
             displayFriendRec.Text = graphMutual.mutualSearch(this.vertex1);
