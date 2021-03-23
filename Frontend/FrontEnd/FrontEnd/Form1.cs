@@ -13,6 +13,8 @@ namespace FrontEnd
 {
     public partial class Form1 : Form
     {
+
+        Microsoft.Msagl.Drawing.Graph graphLayout;
         public List<string> nodes;
         public List<Pair> edges;
         public string vertex1;
@@ -116,7 +118,6 @@ namespace FrontEnd
                 }
             }
 
-            MessageBox.Show(edges[0].vertex1);
             if (nodes.Count != 0)
             {
                 foreach (string s in nodes)
@@ -126,19 +127,15 @@ namespace FrontEnd
                 }
             }
 
-            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
-            Microsoft.Msagl.Drawing.Graph graphLayout = new Microsoft.Msagl.Drawing.Graph();
+            graphLayout = new Microsoft.Msagl.Drawing.Graph("graph");
 
             foreach (Pair P in edges)
             {
-                graphLayout.AddEdge(P.vertex1, P.vertex2);
+                graphLayout.AddEdge(P.vertex1, P.vertex2).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
             }
+            graphLayout.RemoveEdge("A", "B");
 
-            viewer.Graph = graphLayout;
-            this.SuspendLayout();
-            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            panel1.Controls.Add(viewer);
-            this.ResumeLayout();
+            gViewer2.Graph = graphLayout;
 
         }
 
@@ -159,6 +156,7 @@ namespace FrontEnd
 
         private void explore_Click(object sender, EventArgs e)
         {
+
             if (DFS.Checked)
             {
                 MessageBox.Show("This is DFS");
@@ -166,6 +164,12 @@ namespace FrontEnd
             {
                 MessageBox.Show("This is BFS");
             }
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

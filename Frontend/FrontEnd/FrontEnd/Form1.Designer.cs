@@ -29,8 +29,8 @@ namespace FrontEnd
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.Browse = new System.Windows.Forms.Button();
@@ -46,6 +46,7 @@ namespace FrontEnd
             this.label8 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.gViewer2 = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             this.SuspendLayout();
             // 
             // label1
@@ -58,14 +59,6 @@ namespace FrontEnd
             this.label1.TabIndex = 0;
             this.label1.Text = "Social-Network";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.panel1.Location = new System.Drawing.Point(56, 82);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(530, 256);
-            this.panel1.TabIndex = 1;
             // 
             // label2
             // 
@@ -98,15 +91,6 @@ namespace FrontEnd
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F",
-            "G",
-            "H"});
             this.comboBox2.Location = new System.Drawing.Point(150, 451);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 23);
@@ -116,15 +100,6 @@ namespace FrontEnd
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F",
-            "G",
-            "H"});
             this.comboBox3.Location = new System.Drawing.Point(150, 496);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 23);
@@ -220,11 +195,51 @@ namespace FrontEnd
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(530, 235);
             this.panel2.TabIndex = 18;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // gViewer2
+            // 
+            this.gViewer2.ArrowheadLength = 10D;
+            this.gViewer2.AsyncLayout = false;
+            this.gViewer2.AutoScroll = true;
+            this.gViewer2.BackwardEnabled = false;
+            this.gViewer2.BuildHitTree = true;
+            this.gViewer2.CurrentLayoutMethod = Microsoft.Msagl.GraphViewerGdi.LayoutMethod.UseSettingsOfTheGraph;
+            this.gViewer2.EdgeInsertButtonVisible = true;
+            this.gViewer2.FileName = "";
+            this.gViewer2.ForwardEnabled = false;
+            this.gViewer2.Graph = null;
+            this.gViewer2.InsertingEdge = false;
+            this.gViewer2.LayoutAlgorithmSettingsButtonVisible = true;
+            this.gViewer2.LayoutEditingEnabled = true;
+            this.gViewer2.Location = new System.Drawing.Point(56, 95);
+            this.gViewer2.LooseOffsetForRouting = 0.25D;
+            this.gViewer2.MouseHitDistance = 0.05D;
+            this.gViewer2.Name = "gViewer2";
+            this.gViewer2.NavigationVisible = true;
+            this.gViewer2.NeedToCalculateLayout = true;
+            this.gViewer2.OffsetForRelaxingInRouting = 0.6D;
+            this.gViewer2.PaddingForEdgeRouting = 8D;
+            this.gViewer2.PanButtonPressed = false;
+            this.gViewer2.SaveAsImageEnabled = true;
+            this.gViewer2.SaveAsMsaglEnabled = true;
+            this.gViewer2.SaveButtonVisible = true;
+            this.gViewer2.SaveGraphButtonVisible = true;
+            this.gViewer2.SaveInVectorFormatEnabled = true;
+            this.gViewer2.Size = new System.Drawing.Size(523, 240);
+            this.gViewer2.TabIndex = 1;
+            this.gViewer2.TightOffsetForRouting = 0.125D;
+            this.gViewer2.ToolBarIsVisible = true;
+            this.gViewer2.Transform = ((Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation)(resources.GetObject("gViewer2.Transform")));
+            this.gViewer2.UndoRedoButtonsVisible = true;
+            this.gViewer2.WindowZoomButtonPressed = false;
+            this.gViewer2.ZoomF = 1D;
+            this.gViewer2.ZoomWindowThreshold = 0.05D;
             // 
             // Form1
             // 
@@ -232,6 +247,7 @@ namespace FrontEnd
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(669, 916);
+            this.Controls.Add(this.gViewer2);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label5);
@@ -246,7 +262,6 @@ namespace FrontEnd
             this.Controls.Add(this.Browse);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.Name = "Form1";
@@ -260,7 +275,6 @@ namespace FrontEnd
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button Submit;
@@ -277,6 +291,7 @@ namespace FrontEnd
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button Browse;
+        private Microsoft.Msagl.GraphViewerGdi.GViewer gViewer2;
     }
 }
 
