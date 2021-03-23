@@ -120,10 +120,9 @@ public class Social{
             idxpred = network.getindex(currV);
             }
             path.Reverse();
-            foreach(string s in path)
-            {
-                Console.WriteLine(s);
-            }  
+            Console.WriteLine("{0}", string.Join("->", path));
+                int degree = path.Count()-2;
+                Console.WriteLine("Degree = " + degree);
         }
     }
 
