@@ -134,7 +134,7 @@ namespace FrontEnd
 
             foreach (Pair P in edges)
             {
-                graphLayout.AddEdge(P.vertex1, P.vertex2);
+                graphLayout.AddEdge(P.vertex1, P.vertex2).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
             }
 
             gViewer1.Graph = graphLayout;
@@ -178,7 +178,15 @@ namespace FrontEnd
                 socialNetwork.exploreFriends(ref stack, this.vertex1, this.vertex2, ref found);
                 if (found)
                 {
-                    MessageBox.Show("Found");
+                    for(int i=0; i<stack.Count-1; i++)
+                    {
+                        string v1 = stack[i];
+                        string v2 = stack[i + 1];
+                        colorEdge(v1, v2);
+
+                    }
+
+                    gViewer1.Graph = graphLayout;
                 } else
                 {
                     MessageBox.Show("Nama akun: " + this.vertex1 + " "+ this.vertex2+ "\n" + "Tidak ada jalur koneksi yang tersedia\nAnda harus memulai koneksi baru itu sendiri.");
@@ -190,6 +198,25 @@ namespace FrontEnd
             }
 
             displayFriendRec.Text = graphMutual.mutualSearch(this.vertex1);
+        }
+
+        private void colorEdge(string v1, string v2)
+        {
+            int idx = -1;
+            
+            Microsoft.Msagl.Drawing.Edge[] edges = graphLayout.Edges.ToArray();
+            for(int i=0; i<edges.Length; i++)
+            {
+                if ((edges[i].Source == v1 && edges[i].Target == v2) || (edges[i].Source == v2 && edges[i].Target == v1))
+                {
+                    idx = i;
+                }
+            }
+
+            if(idx != -1)
+            {
+                graphLayout.Edges.ElementAt(idx).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+            }
         }
     }
 }
