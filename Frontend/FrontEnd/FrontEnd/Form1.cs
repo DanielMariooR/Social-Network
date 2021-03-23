@@ -185,6 +185,18 @@ namespace FrontEnd
                     }
 
                     gViewer1.Graph = graphLayout;
+                    string answers = "";
+                    answers += "Nama Akun: " + this.vertex1 + " " + this.vertex2 + "\n";
+                    answers += (stack.Count - 2) + "-degree connection\n";
+                    for(int i=0; i<stack.Count; i++)
+                    {
+                        answers += stack[i];
+                        if(i != stack.Count - 1)
+                        {
+                            answers += "-->";
+                        }
+                    }
+                    MessageBox.Show(answers);
                 } else
                 {
                     MessageBox.Show("Nama akun: " + this.vertex1 + " "+ this.vertex2+ "\n" + "Tidak ada jalur koneksi yang tersedia\nAnda harus memulai koneksi baru itu sendiri.");

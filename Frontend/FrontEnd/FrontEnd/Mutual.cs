@@ -86,7 +86,10 @@ namespace Tubes2_Mutual
                             newNeighbour.Add(neighbour[j]);
                         }
                     }
-                    allNeighbour.Add(newNeighbour);
+                    if (newNeighbour.Count > 0)
+                    {
+                        allNeighbour.Add(newNeighbour);
+                    }
                 }
             }
             //Sorting berdasarkan mutual friend terbanyak
